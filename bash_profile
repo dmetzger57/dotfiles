@@ -6,7 +6,9 @@ test -f ~/.bashrc && source ~/.bashrc
 
 export PS1="mbpRH: "
 
-#####
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
 
 alias sshhome='ssh phd@metzger.duckdns.org'
 alias sshmetzger='ssh phd@metzger.duckdns.org'
