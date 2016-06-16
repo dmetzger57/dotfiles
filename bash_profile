@@ -10,6 +10,9 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+# Exit Python Virtual Environment
+alias workoff='deactivate'
+
 alias sshhome='ssh phd@metzger.duckdns.org'
 alias sshmetzger='ssh phd@metzger.duckdns.org'
 alias sshcfme="ssh root@cfme"
