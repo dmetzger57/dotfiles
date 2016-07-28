@@ -1,3 +1,7 @@
+###
+# Version 1.0
+###
+
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
 
