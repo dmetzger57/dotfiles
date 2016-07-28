@@ -1,3 +1,8 @@
+###
+# Version: 1.0
+# Date: July 28, 2016
+###
+#
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
 
