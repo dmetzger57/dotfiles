@@ -1,0 +1,43 @@
+[user]
+  name = Dennis Metzger
+  email = dmetzger@redhat.com
+[color]
+  ui = auto
+  diff = auto
+[core]
+  excludesfile = /Users/dennis/.gitignore_global
+  pager = less -FX
+[pager]
+    log = diff-highlight | less -FX
+    show = diff-highlight | less -FX
+    diff = diff-highlight | less -FX
+[difftool "diffmerge"]
+  cmd = diffmerge --nosplash \"$LOCAL\" \"$REMOTE\"
+[mergetool "diffmerge"]
+  cmd = diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+  trustExitCode = true
+[merge]
+  tool = diffmerge
+  renamelimit = 99999
+[github]
+  user = dmetzger57
+  token = 
+[credential]
+  helper = osxkeychain
+[pull]
+  rebase = true
+[push]
+  default = simple
+[status]
+  short = true
+  branch = true
+[grep]
+  lineNumber = true
+[diff]
+  algorithm = patience
+[rebase]
+  autosquash = true
+[help]
+  autocorrect = 1
+[rerere]
+  enabled = 1

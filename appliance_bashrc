@@ -1,0 +1,63 @@
+function cddata () {
+  cd /var/opt/rh/rh-postgresql95/lib/pgsql/data
+}
+
+alias ac='appliance_console'
+
+alias ss='systemctl status'
+
+alias evmstop='systemctl stop evmserverd'
+alias evmstart='systemctl  start evmserverd'
+alias evmrestart='systemctl restart evmserverd'
+alias evmstatus='systemctl status evmserverd'
+alias evmwatch='watch systemctl status evmserverd'
+
+alias vievm='vi /var/www/miq/vmdb/log/evm.log'
+alias viprod='vi /var/www/miq/vmdb/log/production.log'
+
+alias taillevm='tail -f /var/www/miq/vmdb/log/evm.log'
+alias taillprod='tail -f /var/www/miq/vmdb/log/production.log'
+
+set -o vi
+
+# Set prompt string to the system
+hostName=`hostname | cut -d'.' -f1`
+export PS1="${hostName}: "
+
+export VISUAL=vi
+export EDITOR="$VISUAL"
+
+export CDPATH=${CDPATH}:/var/www/miq/vmdb
+
+export PATH=${PATH}:${HOME}/perftools/bin:${HOME}/bin
+
+function sshrdc () {
+    if [ $# -eq 1 ]
+    then
+        ssh root@10.8.99.${1}
+    elif [ $# -eq 2 ]
+    then
+        ssh ${1}@10.8.99.${2}
+    fi
+}
+
+alias sshhome='ssh phd@metzger.duckdns.org'
+alias sshmetzger='ssh phd@metzger.duckdns.org'
+
+alias cdmiq="cd ${HOME}/github/manageiq"
+alias cdprojects="cd ${HOME}/projects;pwd"
+alias cdredhat="cd ${HOME}/projects/redhat;pwd"
+alias cdtmp='cd ${HOME}/tmp'
+
+###
+#  httpHeaders: Grabs headers from web page
+httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grabs headers from web page
+
+###
+#  httpDebug:  Download a web page and show info on what took time
+httpDebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
