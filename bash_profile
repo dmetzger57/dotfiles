@@ -1,55 +1,37 @@
+export FIGNORE=$FIGNORE:DS_Store
+
+export TMP="/Volumes/tmp"
+
 # Set architecture flags
 export ARCHFLAGS="-arch x86_64"
 
 # Load .bashrc if it exists
 test -f ~/.bashrc && source ~/.bashrc
-#
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
 
 set -o vi
 
-# Set prompt string to the system
-export PS1="djm: "
+IP=`ip route get 8.8.8.8 | awk '{print $NF; exit}'`
+export PS1="mbprh[${IP}]: "
 
-# Add RVM to PATH for scripting
-export PATH="${PATH}:/usr/local/bin:$HOME/bin:$HOME/.rvm/bin:/usr/local/git/bin"
-
-export CDPATH=".:${HOME}:${HOME}/github:${HOME}/projects:${HOME}/projects/redhat"
-
-export GEM_PATH=$HOME/.gem
+export CDPATH=".:${HOME}:${HOME}/src/redhat"
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-ssh_raliegh() {
-    if [ $# -eq 1 ]
-    then
-        ssh root@10.8.99.${1}
-    elif [ $# -eq 2 ]
-    then
-        ssh ${1}@10.8.99.${2}
-    fi
-}
-alias sshrdc=ssh_raliegh
+alias lst="ls -lt | more"
+alias gpom="git push origin master"
 
-ssh_home_lan() {
-    if [ $# -eq 1 ]
-    then
-        ssh dennis@192.168.1..${1}
-    elif [ $# -eq 2 ]
-    then
-        ssh ${1}@192.168.1.${2}
-    fi
-}
-alias sshhome=ssh_home_lan
+# Add RVM to PATH for scripting
+# export PATH="${PATH}:/usr/local/bin:${HOME}/bin:${HOME}/.rvm/bin:/${HOME}/src/redhat/cfme-log-tools
+export PATH="${PATH}:${HOME}/bin:${HOME}/src/redhat/cfme-log-tools"
 
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+export GEM_PATH=$HOME/.gem
+
+alias sshrdu='ssh root@10.8.99.238'
 alias sshhome='ssh phd@metzger.duckdns.org'
-alias sshmetzger='ssh phd@metzger.duckdns.org'
+alias sshmetzger='ssh phd@metzger'
 
 alias cdmiq="cd ${HOME}/github/manageiq"
 alias cdprojects="cd ${HOME}/projects;pwd"
